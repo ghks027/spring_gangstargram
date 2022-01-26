@@ -1,7 +1,5 @@
 package com.ganghwan.gangstargram.config;
 
-import java.io.IOException;
-
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,13 +11,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan(basePackages = "com.gangstargram.*")
+@MapperScan(basePackages="com.ganghwan.gangstargram.*")
 public class DatabaseConfig {
 	
 	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSourcce) throws Exception {
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSourcce);
+		sessionFactory.setDataSource(dataSource);
 		
 		Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
 		sessionFactory.setMapperLocations(res);
