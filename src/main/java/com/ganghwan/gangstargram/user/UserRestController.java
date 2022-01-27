@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ganghwan.gangstargram.user.bo.UserBO;
+import com.ganghwan.gangstargram.user.model.User;
 
 @RequestMapping("/user")
 @RestController
@@ -55,6 +56,26 @@ public class UserRestController {
 			result.put("isDuplicate", "true");
 		} else {
 			result.put("isDuplicate", "false");
+		}
+		
+		return result;
+	}
+	
+	// 로그인
+	@PostMapping("/sign_in")
+	public Map<String, String> signIn(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password
+			) {
+		
+		User user = userBO.getUser(loginId, password);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if(user != null) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "false");
 		}
 		
 		return result;

@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
     
     	<header class = "d-flex align-items-center">
-			<h2 class = "ml-3">Gangstargarm</h2>
+			<h2 class = "ml-3">Gangstargram</h2>
 		</header>

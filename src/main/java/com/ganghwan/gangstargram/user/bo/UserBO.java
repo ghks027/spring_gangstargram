@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.ganghwan.gangstargram.common.EncryptUtils;
 import com.ganghwan.gangstargram.user.dao.UserDAO;
+import com.ganghwan.gangstargram.user.model.User;
 
 @Service
 public class UserBO {
@@ -26,5 +27,10 @@ public class UserBO {
 		} else {
 			return true;
 		}
+	}
+	
+	// 로그인
+	public User getUser(String loginId, String password) {
+		return userDAO.selectUser(loginId, EncryptUtils.md5(password));
 	}
 }
