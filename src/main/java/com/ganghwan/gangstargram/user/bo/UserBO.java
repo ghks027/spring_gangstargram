@@ -14,9 +14,17 @@ public class UserBO {
 	
 	// 회원가입
 	public int addUser(String loginId, String password, String name, String email) {
+		return userDAO.insertUser(loginId, EncryptUtils.md5(password), name, email);
+	}
+	
+	// 중복확인
+	public boolean isDuplicateId(String loginId) {
+		int count = userDAO.selectCountId(loginId);
 		
-		String encPassword = EncryptUtils.md5(password);
-		
-		return userDAO.insertUser(loginId, encPassword, name, email);
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

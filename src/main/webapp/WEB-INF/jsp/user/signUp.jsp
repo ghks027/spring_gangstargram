@@ -28,8 +28,12 @@
 				
 				<div class = "d-flex">
 					<input type = "text" class = "form-control mt-5" placeholder = "Username" id = "loginIdInput">
-					<button type = "button" id = "checkId" class = "btn btn-primary mt-5 ml-3">중복확인</button>
+					<button type = "button" id = "duplicateBtn" class = "btn btn-primary mt-5 ml-3">중복확인</button>
 				</div>
+				
+				<div id = "duplicateId" class = "text-danger mt-1 d-none">중복된 아이디 입니다</div>
+				<div id = "noneDuplicateId" class = "text-success mt-1 d-none">사용 가능한 아이디 입니다</div>
+				
 				<input type = "password" class = "form-control mt-3" placeholder = "Password" id = "passwordInput">
 				<input type = "password" class = "form-control mt-3" placeholder = "비밀번호 확인" id = "passwordConflimInput">
 				<input type = "text" class = "form-control mt-3" placeholder = "이름" id = "nameInput">
@@ -44,6 +48,8 @@
 	
 	<script>
 		$(document).ready(function() {
+			
+			// 회원가입
 			$("#joinBtn").on("click", function() {
 				var loginId = $("#loginIdInput").val();
 				var password = $("#passwordInput").val();
@@ -85,6 +91,36 @@
 							location.href = "/user/signin_view";
 						} else {
 							alert("회원가입 실패");
+						}
+					},
+					error:function() {
+						alert("에러 발생");
+					}
+				});
+			});
+			
+			// 중복확인
+			$("#duplicateBtn").on("click", function() {
+				var loginId = $("#loginIdInput").val();
+				
+				if(loginId == "") {
+					alert("아이디를 입력하세요");
+					return;
+				}
+				
+				$.ajax({
+					type:"get",
+					url:"/user/is_duplicate_id",
+					data:{"loginId":loginId},
+					success:function(data) {
+						if(data.isDuplicate == "true") {
+					 		$("#duplicateId").removeClass("d-none");
+							$("#noneDuplicateId").addClass("d-none"); 
+							isDuplicateId = true;
+						} else {
+							$("#noneDuplicateId").removeClass("d-none");
+							$("#duplicateId").addClass("d-none"); 
+							isDuplicateId = false;
 						}
 					},
 					error:function() {

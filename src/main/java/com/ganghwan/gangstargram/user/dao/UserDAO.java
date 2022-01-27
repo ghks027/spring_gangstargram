@@ -13,4 +13,9 @@ public interface UserDAO {
 			@Param("name") String name,
 			@Param("email") String email
 			);
+	
+	// 중복확인
+	public int selectCountId(
+			@Param("loginId") String loginId
+			);
 }
