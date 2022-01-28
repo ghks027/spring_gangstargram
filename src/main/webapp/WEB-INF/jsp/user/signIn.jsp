@@ -33,9 +33,7 @@
 				<hr>
 			</form>
 				
-				<a href = "/user/signup_view"></a>
-				
-				<button type = "button" class = "btn btn-secondary btn-block mt-3">회원가입</button>
+				<a href = "/user/signup_view" class = "btn btn-block bg-secondary text-white">회원가입</a>
 			</div>
 		</section>
 		
@@ -77,11 +75,6 @@
 						alert("에러 발생");
 					}
 				});
-			});
-			
-			// 회원가입
-			$("#joinBtn").on("click", function() {
-				
 			});
 		});,
 	</script>
