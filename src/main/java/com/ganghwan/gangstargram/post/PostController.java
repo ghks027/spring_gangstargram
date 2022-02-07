@@ -11,6 +11,6 @@ public class PostController {
 	// 게시글
 	@GetMapping("/timeline")
 	public String timeline() {
-		return "post/createView";
+		return "post/timeline";
 	}
 }
