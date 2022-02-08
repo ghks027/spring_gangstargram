@@ -24,6 +24,7 @@
 		
 		<section class = "d-flex justify-content-center">
 			<div class = "join my-5">
+				<textarea class = "form-control mt-3" rows="5" id = "contentInput"></textarea>
 			</div>
 		</section>
 		
