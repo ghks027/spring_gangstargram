@@ -22,9 +22,35 @@
 	<div id = "warp">
 		<c:import url = "/WEB-INF/jsp/include/header.jsp"/>
 		
-		<section class = "d-flex justify-content-center">
-			<div class = "join my-5">
-				<textarea class = "form-control mt-3" rows="5" id = "contentInput"></textarea>
+		<section class = "content d-flex justify-content-center">
+			<div class = "join-box my-5">
+				<div class = "create-box">
+					<textarea class = "form-control text-secondary" rows="3" id = "contentInput">내용을 입력해주세요</textarea>
+					
+					<div class = "d-flex justify-content-between mt-1">
+						<input type = "file" id = "fileInput">
+						<button type = "button" class = "btn btn-primary btn-sm" id = "saveBtn">게시</button>
+					</div>
+				</div>
+				
+				<div class = "post-box">
+					<div class = "postDetail mt-3 d-flex justify-content-between d-flex align-items-center">
+						<b class = "ml-3">ganghwan</b>
+						<button type = "button" class = "btn btn-danger btn-sm" id = "delelteBtn">삭제</button>
+					</div>
+					
+					<div class = "d-flex justify-content-center">
+						<img class = "mt-2" width = "500" src = "#">
+					</div>
+					
+					<div class = "form-control mt-3" rows="3">오호</div>
+					
+					<div class = "postDetail mt-2 d-flex align-items-center">
+						<div class = "ml-3">댓글</div>
+					</div>
+					
+					
+				</div>
 			</div>
 		</section>
 		

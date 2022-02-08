@@ -10,9 +10,14 @@ header {
 	background-color: lightgray;
 }
 
-.content > .join {
+.content > .join-box {
 	height:400px;
 	width:400px;
+}
+
+.content > .join-box > .post-box > .postDetail {
+	height:30px;
+	background-color:  lightgray;
 }
 
 footer {
