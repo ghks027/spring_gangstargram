@@ -1,7 +1,11 @@
 package com.ganghwan.gangstargram.post.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.ganghwan.gangstargram.post.model.Post;
 
 @Repository
 public interface PostDAO {
@@ -12,5 +16,10 @@ public interface PostDAO {
 			@Param("userName") String userName,
 			@Param("content") String content,
 			@Param("image") String image
+			);
+	
+	// 게시글 보기
+	public List<Post> selectPostList(
+			@Param("userId") int userId
 			);
 }
