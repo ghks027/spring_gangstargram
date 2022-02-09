@@ -8,16 +8,14 @@
  		INSERT INTO `post`
  		(
  			`userId`
- 			, `userName`
  			, `content`
  			, `image`
  			, `createdAt`
- 			, `updatedAt
+ 			, `updatedAt`
  		)
  		VALUES
  		(
  			#{userId}
- 			, #{userName}
  			, #{content}
  			, #{image}
  			, now()

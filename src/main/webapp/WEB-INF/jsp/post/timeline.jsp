@@ -25,7 +25,7 @@
 		<section class = "content d-flex justify-content-center">
 			<div class = "join-box my-5">
 				<div class = "create-box">
-					<textarea class = "form-control text-secondary" rows="3" id = "contentInput">내용을 입력해주세요</textarea>
+					<textarea class = "form-control text-secondary" rows="3" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
 					
 					<div class = "d-flex justify-content-between mt-1">
 						<input type = "file" id = "fileInput">
@@ -56,5 +56,48 @@
 		
 		<c:import url = "/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
+	
+	<script>
+	$(document).ready(function() {
+		$("#saveBtn").on("click", function() {
+			let content = $("#contentInput").val().trim();
+			let file = $("#fileInput").val();
+			
+			if(content == "") {
+				alert("내용을 입력하세요");
+				return;
+			}
+			
+			if(file == "") {
+				alert("파일을 선책하세요");
+				return;
+			}
+			
+			var formData = new FormData();
+			formData.append("content", content);
+			formData.append("file", $("#fileInput")[0].files[0]);
+			
+			$.ajax({
+				type:"post",
+				url:"/post/create",
+				data:formData,
+				// 파일 업로드 필수
+				enctype:"multipart/form-data",
+				processData:false,
+				contentType:false,
+				success:function(data) {
+					if(data.result == "success") {
+						location.href = "/post/timeline";
+					} else {
+						alert("작성 실패");
+					}
+				},
+				error:function() {
+					alert("에러 발생");
+				}
+			});
+		});
+	});
+	</script>
 </body>
 </html>
