@@ -24,6 +24,8 @@
 		
 		<section class = "content d-flex justify-content-center">
 			<div class = "join-box my-5">
+				
+				<!-- 게시들 작성 -->
 				<div class = "create-box">
 					<textarea class = "form-control text-secondary" rows="3" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
 					
@@ -33,9 +35,10 @@
 					</div>
 				</div>
 				
+				<!-- 게시글 보기 -->
 				<div class = "post-box">
 					<div class = "postDetail mt-3 d-flex justify-content-between d-flex align-items-center">
-						<b class = "ml-3">ganghwan</b>
+						<b class = "ml-3">ganghwan ${post.userId }</b>
 						<button type = "button" class = "btn btn-danger btn-sm" id = "delelteBtn">삭제</button>
 					</div>
 					
@@ -43,7 +46,7 @@
 						<img class = "mt-2" width = "500" src = "#">
 					</div>
 					
-					<div class = "form-control mt-3" rows="3">오호</div>
+					<div class = "form-control mt-3" rows="3">오호 ${post.content }</div>
 					
 					<div class = "postDetail mt-2 d-flex align-items-center">
 						<div class = "ml-3">댓글</div>
@@ -59,6 +62,8 @@
 	
 	<script>
 	$(document).ready(function() {
+		
+		// 게시글 작성
 		$("#saveBtn").on("click", function() {
 			let content = $("#contentInput").val().trim();
 			let file = $("#fileInput").val();

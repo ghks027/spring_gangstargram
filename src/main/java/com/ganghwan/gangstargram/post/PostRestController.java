@@ -22,6 +22,7 @@ public class PostRestController {
 	@Autowired
 	private PostBO postBO;
 	
+	// 게시글 작성
 	@PostMapping("/create")
 	public Map<String, String> create(
 			@RequestParam("content") String content,
@@ -32,9 +33,9 @@ public class PostRestController {
 		HttpSession session = request.getSession();
 		
 		int userId = (Integer)session.getAttribute("userId");
-//		String userName = session.getAttribute("userName");
+		String userName = (String)session.getAttribute("userName");
 		
-		int count = postBO.addPost(userId, content, file);
+		int count = postBO.addPost(userId, userName, content, file);
 
 		Map<String, String> result = new HashMap<>();
 
@@ -46,4 +47,7 @@ public class PostRestController {
 
 		return result;
 	}
+	
+	// 게시글 보기
+	
 }
