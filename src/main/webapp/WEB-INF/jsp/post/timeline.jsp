@@ -35,9 +35,7 @@
 						
 						<div class = "d-flex justify-content-between mt-1">
 							<!-- icon - 글자처럼 취급 -->
-							<span class = "img-icon">
-								<i class="bi bi-image" id = "imageBtn"></i>
-							</span>
+							<span class = "img-icon"><i class="bi bi-image" id = "imageBtn"></i></span>
 							<input type = "file" id = "fileInput" class = "d-none">
 							
 							<button type = "button" class = "btn btn-primary btn-sm" id = "saveBtn">게시</button>
@@ -46,22 +44,26 @@
 				</div>
 				
 				<!-- 게시글 보기 -->
-				<div class = "post-box mt-1" style="overflow:auto; height:330px; padding:10px;">
+				<div class = "post-box mt-1" style="overflow:auto; height:400px; padding:10px;">
 					<c:forEach var = "post" items = "${postList }">
 						<div class = "postDetail mt-3 d-flex justify-content-between d-flex align-items-center">
 							<b class = "ml-3">${post.userLoginId }</b>
 							<button type = "button" class = "btn btn-danger btn-sm" id = "delelteBtn">삭제</button>
 						</div>
-							
-						<div class = "d-flex justify-content-center">
-							<img class = "mt-2" width = "200" src = "${post.image} ">
-						</div>
-							
+						
+						<div class = "d-flex justify-content-center"><img class = "mt-2" width = "200" src = "${post.image} "></div>
+						<div class = "mt-1">좋아요</div>	
+						
 						<div class = "form-control mt-3" rows="3">${post.content }</div>
-							
-						<div class = "postDetail mt-2 d-flex align-items-center">
-							<div class = "ml-3">댓글</div>
+						
+						<div class = "postDetail mt-2 d-flex align-items-center"><div class = "ml-3">댓글</div></div>
+						<div style = "border:none" class = "form-control mt-2">댓글 내용</div>
+						<div class = "d-flex mt-1">
+							<textarea class = "form-control text-secondary mr-1" rows = "1" id = "commentInput" placeholder = "댓글을 입력하세요"></textarea>
+							<button type = "button" class = "btn btn-primary btn-sm" id = "commentBtn">등록</button>
 						</div>
+						
+						<hr>
 					</c:forEach>
 				</div>
 			</div>
