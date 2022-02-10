@@ -3,6 +3,7 @@ package com.ganghwan.gangstargram.post;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,11 @@ public class PostController {
 			Model model
 			) {
 		
-		List<Post> postlist = postBO.getPostList(0);
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<Post> postlist = postBO.getPostList(userId);
+		model.addAttribute("postList", postlist);
 		
 		return "post/timeline";
 	}

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,42 +18,51 @@
 
 <link rel = "stylesheet" href = "/static/css/style.css" type = "text/css">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
 </head>
 <body>
 	<div id = "warp">
 		<c:import url = "/WEB-INF/jsp/include/header.jsp"/>
 		
 		<section class = "content d-flex justify-content-center">
-			<div class = "join-box my-5">
+			<div class = "timeline my-3">
 				
-				<!-- 게시들 작성 -->
-				<div class = "create-box">
-					<textarea class = "form-control text-secondary" rows="3" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
-					
-					<div class = "d-flex justify-content-between mt-1">
-						<input type = "file" id = "fileInput">
-						<button type = "button" class = "btn btn-primary btn-sm" id = "saveBtn">게시</button>
+				<!-- 게시물 작성 -->
+				<div class = "area d-flex justify-content-center align-items-center">
+					<div class = "create-box">
+						<textarea style = "border:none" class = "form-control text-secondary" rows="2" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
+						
+						<div class = "d-flex justify-content-between mt-1">
+							<!-- icon - 글자처럼 취급 -->
+							<span class = "img-icon">
+								<i class="bi bi-image" id = "imageBtn"></i>
+							</span>
+							<input type = "file" id = "fileInput" class = "d-none">
+							
+							<button type = "button" class = "btn btn-primary btn-sm" id = "saveBtn">게시</button>
+						</div>
 					</div>
 				</div>
 				
 				<!-- 게시글 보기 -->
-				<div class = "post-box">
-					<div class = "postDetail mt-3 d-flex justify-content-between d-flex align-items-center">
-						<b class = "ml-3">ganghwan ${post.userId }</b>
-						<button type = "button" class = "btn btn-danger btn-sm" id = "delelteBtn">삭제</button>
-					</div>
-					
-					<div class = "d-flex justify-content-center">
-						<img class = "mt-2" width = "500" src = "#">
-					</div>
-					
-					<div class = "form-control mt-3" rows="3">오호 ${post.content }</div>
-					
-					<div class = "postDetail mt-2 d-flex align-items-center">
-						<div class = "ml-3">댓글</div>
-					</div>
-					
-					
+				<div class = "post-box mt-1" style="overflow:auto; height:330px; padding:10px;">
+					<c:forEach var = "post" items = "${postList }">
+						<div class = "postDetail mt-3 d-flex justify-content-between d-flex align-items-center">
+							<b class = "ml-3">${post.userLoginId }</b>
+							<button type = "button" class = "btn btn-danger btn-sm" id = "delelteBtn">삭제</button>
+						</div>
+							
+						<div class = "d-flex justify-content-center">
+							<img class = "mt-2" width = "200" src = "${post.image} ">
+						</div>
+							
+						<div class = "form-control mt-3" rows="3">${post.content }</div>
+							
+						<div class = "postDetail mt-2 d-flex align-items-center">
+							<div class = "ml-3">댓글</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</section>
@@ -62,6 +72,11 @@
 	
 	<script>
 	$(document).ready(function() {
+		
+		// 이미지 파일 클릭 효과
+		$("#imageBtn").on("click", function() {
+			$("#fileInput").click();
+		});
 		
 		// 게시글 작성
 		$("#saveBtn").on("click", function() {
@@ -73,7 +88,8 @@
 				return;
 			}
 			
-			if(file == "") {
+			// 파일 유효성 검사
+			if($("#fileInput")[0].files.length == 0) {
 				alert("파일을 선택하세요");
 				return;
 			}

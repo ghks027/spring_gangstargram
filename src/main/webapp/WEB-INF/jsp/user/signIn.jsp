@@ -23,7 +23,7 @@
 		<header class = "bg-white"></header>
 	
 		<section class = "content d-flex justify-content-center">
-			<div class = "join-box my-5">
+			<div class = "join-box my-3">
 			<form id = "loginForm">
 				<h2 class = "text-center">Gangstargram</h2>
 				<input type = "text" class = "form-control mt-5" placeholder = "Username" id = "loginIdInput">

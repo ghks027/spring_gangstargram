@@ -10,7 +10,7 @@
  		INSERT INTO `post`
  		(
  			`userId`
- 			, `userName`
+ 			, `userLoginId`
  			, `content`
  			, `image`
  			, `createdAt`
@@ -19,7 +19,7 @@
  		VALUES
  		(
  			#{userId}
- 			, #{userName}
+ 			, #{userLoginId}
  			, #{content}
  			, #{image}
  			, now()
@@ -32,7 +32,7 @@
  		SELECT
  			`id`
  			, `userId`
- 			, `userName`
+ 			, `userLoginId`
  			, `content`
  			, `image`
  			, `createdAt`

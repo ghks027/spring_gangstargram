@@ -17,11 +17,11 @@ public class PostBO {
 	private PostDAO postDAO;
 
 	// 게시글 작성
-	public int addPost(int userId, String userName, String content, MultipartFile file) {
+	public int addPost(int userId, String userLoginId, String content, MultipartFile file) {
 		
 		String filePath = FileManagerService.saveFile(userId, file);
 		
-		return postDAO.insertPost(userId, userName, content, filePath);
+		return postDAO.insertPost(userId, userLoginId, content, filePath);
 	}
 	
 	// 게시글 보기

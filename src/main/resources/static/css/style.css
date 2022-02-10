@@ -11,15 +11,36 @@ header {
 }
 
 .content > .join-box {
-	height:400px;
+	height:500px;
 	width:400px;
 }
 
-.content > .join-box > .post-box > .postDetail {
+.content > .timeline {
+	height:500px;
+	width:500px;
+}
+
+.content > .timeline > .area {
+	width:420px;
+	height:120px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin:auto;
+}
+
+.content > .timeline > .area > .create-box {
+	width:400px;
+}
+
+.content > .timeline > .post-box > .postDetail {
 	height:30px;
-	background-color:  lightgray;
+	background-color: lightgray;
 }
 
 footer {
 	heigth:50px;
+}
+
+.img-icon {
+	font-size:25px;
 }

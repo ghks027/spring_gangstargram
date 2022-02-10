@@ -23,7 +23,7 @@
 		<c:import url = "/WEB-INF/jsp/include/header.jsp"/>
 		
 		<section class = "content d-flex justify-content-center">
-			<div class = "join-box my-5">
+			<div class = "join-box my-3">
 				<h2 class = "text-center"><b>회원가입</b></h2>
 				
 				<div class = "d-flex">
