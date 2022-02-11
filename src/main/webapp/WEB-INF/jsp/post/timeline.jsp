@@ -64,8 +64,8 @@
 						<div class = "postDetail d-flex align-items-center"><div class = "ml-3">댓글</div></div>
 						<div style = "border:none" class = "form-control mt-1">댓글 내용</div>
 						<div class = "d-flex">
-							<textarea style = "resize:none" class = "form-control text-secondary mr-1" rows = "1" id = "commentInput" placeholder = "댓글을 입력하세요"></textarea>
-							<button type = "button" class = "btn btn-primary btn-sm" id = "commentBtn">등록</button>
+							<input type = "text" class = "form-control broder-0 bin mr-2" id = "commentInput${post.id }" placeholder = "댓글을 입력하세요">
+							<button type = "button" class = "btn btn-primary btn-sm commentBtn" data-post-id = "${post.id }">등록</button>
 						</div>
 					</div>
 					
@@ -146,6 +146,32 @@
 				error:function() {
 					alert("에러 발생");
 				}
+			});
+		});
+		
+		// 댓글 작성
+		$(".commentBtn").on("click", function() {
+			
+			let postId = $(this).data("post-id");
+			
+			// "#commentInput5"
+			let content =  $("commentInput" + postId).val();
+			
+			$.ajax({
+				type:"post",
+				url:"/post/comment/create",
+				data:{"postId":postId, "content":content},
+				success:function(data) {
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						alert("댓글 작성 실패");
+					}
+				},
+				error:function() {
+					alert("에러 발생");
+				}
+				
 			});
 		});
 	});
