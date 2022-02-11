@@ -10,26 +10,14 @@ header {
 	background-color: lightgray;
 }
 
-.content > .join-box {
-	height:500px;
-	width:400px;
-}
-
 .content > .timeline {
 	height:500px;
 	width:400px;
 }
 
 .content > .timeline > .area {
-	width:420px;
-	height:120px;
     border: 1px solid lightgray;
     border-radius: 5px;
-    margin:auto;
-}
-
-.content > .timeline > .area > .create-box {
-	width:400px;
 }
 
 .content > .timeline > .post-box::-webkit-scrollbar {

@@ -28,7 +28,7 @@
  	</insert>
  	
  	<!-- 게시글 보기 -->
- 	 <select id = "selectPostList" parameterType = "int" resultType = "com.ganghwan.gangstargram.post.model.Post">
+ 	<select id = "selectPostList" parameterType = "int" resultType = "com.ganghwan.gangstargram.post.model.Post">
  		SELECT
  			`id`
  			, `userId`
@@ -43,5 +43,28 @@
  			`userId` = #{userId}
  		ORDER BY
  			`id` DESC
+ 	</select>
+ 	
+ 	<!-- 게시글 삭제 -->
+ 	<delete id = "deletePost" parameterType = "int">
+ 		DELETE FROM `post`
+ 		WHERE
+ 			`id` = #{postId}
+ 	</delete>
+ 	
+ 	<!-- 파일 삭제 -->
+ 	<select id = "selectPost" resultType = "com.ganghwan.gangstargram.post.model.Post">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userLoginId`
+ 			, `content`
+ 			, `image`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`id` = #{postId}
  	</select>
  </mapper>

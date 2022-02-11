@@ -28,4 +28,14 @@ public class PostBO {
 	public List<Post> getPostList(int userId) {
 		return postDAO.selectPostList(userId);
 	}
+	
+	// 게시글 삭제
+	public int deletePost(int postId) {
+		
+		// 파일 삭제
+		Post post = postDAO.selectPost(postId);
+		FileManagerService.removeFile(post.getImage());
+		
+		return postDAO.deletePost(postId);
+	}
 }

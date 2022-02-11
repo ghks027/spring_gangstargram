@@ -30,10 +30,10 @@
 				
 				<!-- 게시물 작성 -->
 				<div class = "area d-flex justify-content-center align-items-center">
-					<div class = "create-box">
-						<textarea style = "border:none" class = "form-control text-secondary" rows="2" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
+					<div class = "create-box form-control">
+						<textarea style = "border:none; resize:none" class = "form-control text-secondary" rows="2" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
 						
-						<div class = "d-flex justify-content-between mt-1">
+						<div class = "d-flex justify-content-between my-1">
 							<!-- icon - 글자처럼 취급 -->
 							<span class = "img-icon"><i class="bi bi-image" id = "imageBtn"></i></span>
 							<input type = "file" id = "fileInput" class = "d-none">
@@ -48,7 +48,7 @@
 					<c:forEach var = "post" items = "${postList }">
 						<div class = "postDetail mt-3 d-flex justify-content-between d-flex align-items-center">
 							<b class = "ml-3">${post.userLoginId }</b>
-							<button type = "button" class = "btn btn-danger btn-sm" id = "delelteBtn">삭제</button>
+							<button type = "button" class = "btn btn-danger btn-sm" id = "deleteBtn" data-post-id = "${post.id }">삭제</button>
 						</div>
 						
 						<div class = "d-flex justify-content-center"><img class = "mt-2" width = "200" src = "${post.image} "></div>
@@ -59,7 +59,7 @@
 						<div class = "postDetail mt-2 d-flex align-items-center"><div class = "ml-3">댓글</div></div>
 						<div style = "border:none" class = "form-control mt-2">댓글 내용</div>
 						<div class = "d-flex mt-1">
-							<textarea class = "form-control text-secondary mr-1" rows = "1" id = "commentInput" placeholder = "댓글을 입력하세요"></textarea>
+							<textarea style = "resize:none" class = "form-control text-secondary mr-1" rows = "1" id = "commentInput" placeholder = "댓글을 입력하세요"></textarea>
 							<button type = "button" class = "btn btn-primary btn-sm" id = "commentBtn">등록</button>
 						</div>
 						
@@ -113,6 +113,29 @@
 						location.href = "/post/timeline";
 					} else {
 						alert("작성 실패");
+					}
+				},
+				error:function() {
+					alert("에러 발생");
+				}
+			});
+		});
+		
+		// 게시글 삭제
+		$("#deleteBtn").on("click", function() {
+				
+			let postId = $(this).data("post-id");
+				
+			$.ajax({
+				type:"get",
+				url:"/post/delete",
+				data:{"postId":postId},
+				success:function(data) {
+					if(data.result == "success") {
+						alert("삭제 성공");
+						location.href = "/post/timeline";
+					} else {
+						alert("삭제 실패"); 
 					}
 				},
 				error:function() {
