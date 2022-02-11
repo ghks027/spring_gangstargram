@@ -29,43 +29,48 @@
 			<div class = "timeline my-3">
 				
 				<!-- 게시물 작성 -->
-				<div class = "area d-flex justify-content-center align-items-center">
-					<div class = "create-box form-control">
-						<textarea style = "border:none; resize:none" class = "form-control text-secondary" rows="2" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
+				<div class = "create-box form-control">
+					<textarea style = "border:none; resize:none" class = "form-control text-secondary" rows="2" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
 						
-						<div class = "d-flex justify-content-between my-1">
-							<!-- icon - 글자처럼 취급 -->
-							<span class = "img-icon"><i class="bi bi-image" id = "imageBtn"></i></span>
-							<input type = "file" id = "fileInput" class = "d-none">
+					<div class = "d-flex justify-content-between my-1">
+						<!-- icon - 글자처럼 취급 -->
+						<span class = "img-icon"><i class="bi bi-image" id = "imageBtn"></i></span>
+						<input type = "file" id = "fileInput" class = "d-none">
 							
-							<button type = "button" class = "btn btn-primary btn-sm" id = "saveBtn">게시</button>
-						</div>
+						<button type = "button" class = "btn btn-primary btn-sm" id = "saveBtn">게시</button>
 					</div>
 				</div>
 				
 				<!-- 게시글 보기 -->
-				<div class = "post mt-2">
-					<c:forEach var = "post" items = "${postList }">
-						<div class = "post-box mt-3 border rounded">
-							<div class = "postDetail d-flex justify-content-between d-flex align-items-center">
-								<b class = "ml-3">${post.userLoginId }</b>
-								<button type = "button" class = "btn btn-danger btn-sm" id = "deleteBtn" data-post-id = "${post.id }">삭제</button>
-							</div>
-							
-							<div class = "d-flex justify-content-center"><img class = "mt-1" width = "200" src = "${post.image} "></div>
-							<div class = "mt-1 ml-2"><i class="bi bi-heart"></i> 좋아요</div>	
-							
-							<div class = "form-control mt-1" rows="3">${post.content }</div>
-							
-							<div class = "postDetail mt-2 d-flex align-items-center"><div class = "ml-3">댓글</div></div>
-							<div style = "border:none" class = "form-control mt-1">댓글 내용</div>
-							<div class = "d-flex mt-1">
-								<textarea style = "resize:none" class = "form-control text-secondary mr-1" rows = "1" id = "commentInput" placeholder = "댓글을 입력하세요"></textarea>
-								<button type = "button" class = "btn btn-primary btn-sm" id = "commentBtn">등록</button>
-							</div>
+				<c:forEach var = "post" items = "${postList }">
+				
+					<div class = "post-box mt-3 border rounded">
+						<div class = "postDetail d-flex justify-content-between align-items-center">
+							<b class = "ml-3">${post.userLoginId }</b>
+							<button type = "button" class = "btn btn-danger btn-sm" id = "deleteBtn" data-post-id = "${post.id }">삭제</button>
 						</div>
-					</c:forEach>
-				</div>
+							
+						<div class = "d-flex justify-content-center"><img class = "mt-1" width = "200" src = "${post.image} "></div>
+						
+						<hr>
+						
+						<div class = "ml-2" >
+							<i class="bi bi-heart"></i>
+							<b style = "font-size:small">좋아요</b>
+						</div>	
+						
+						<div style = "border:none" class = "form-control">${post.content }</div>
+							
+						<div class = "postDetail d-flex align-items-center"><div class = "ml-3">댓글</div></div>
+						<div style = "border:none" class = "form-control mt-1">댓글 내용</div>
+						<div class = "d-flex">
+							<textarea style = "resize:none" class = "form-control text-secondary mr-1" rows = "1" id = "commentInput" placeholder = "댓글을 입력하세요"></textarea>
+							<button type = "button" class = "btn btn-primary btn-sm" id = "commentBtn">등록</button>
+						</div>
+					</div>
+					
+				</c:forEach>
+				
 			</div>
 		</section>
 		

@@ -10,20 +10,11 @@ header {
 	background-color: lightgray;
 }
 
-.content > .join-box {
-	height:500px;
-	width:400px;
-}
-
 .content > .timeline {
 	width:400px;
 }
 
-.content > .timeline > .post > .post-box::-webkit-scrollbar {
-	display:none;
-}
-
-.content > .timeline > .post > .post-box > .postDetail {
+.content > .timeline > .post-box > .postDetail {
 	height:30px;
 	background-color: lightgray;
 }
