@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ganghwan.gangstargram.post.bo.PostBO;
 
+// 명령만 수행
+// model 사용 안함
 @RestController
 @RequestMapping("/post")
 public class PostRestController {

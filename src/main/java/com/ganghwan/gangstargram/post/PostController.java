@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ganghwan.gangstargram.post.bo.PostBO;
 import com.ganghwan.gangstargram.post.model.Post;
 
+// 결과를 jsp에 전달
+// model 활용
 @RequestMapping("/post")
 @Controller
 public class PostController {
@@ -24,14 +26,10 @@ public class PostController {
 	// 게시글
 	@GetMapping("/timeline")
 	public String timeline(
-			HttpServletRequest request,
 			Model model
 			) {
 		
-		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("userId");
-		
-		List<Post> postlist = postBO.getPostList(userId);
+		List<Post> postlist = postBO.getPostList();
 		model.addAttribute("postList", postlist);
 		
 		return "post/timeline";

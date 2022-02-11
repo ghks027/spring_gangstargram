@@ -25,8 +25,8 @@ public class PostBO {
 	}
 	
 	// 게시글 보기
-	public List<Post> getPostList(int userId) {
-		return postDAO.selectPostList(userId);
+	public List<Post> getPostList() {
+		return postDAO.selectPostList();
 	}
 	
 	// 게시글 삭제

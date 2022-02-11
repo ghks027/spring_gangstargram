@@ -28,7 +28,7 @@
  	</insert>
  	
  	<!-- 게시글 보기 -->
- 	<select id = "selectPostList" parameterType = "int" resultType = "com.ganghwan.gangstargram.post.model.Post">
+ 	<select id = "selectPostList" resultType = "com.ganghwan.gangstargram.post.model.Post">
  		SELECT
  			`id`
  			, `userId`
@@ -39,8 +39,6 @@
  			, `updatedAt`
  		FROM
  			`post`
- 		WHERE
- 			`userId` = #{userId}
  		ORDER BY
  			`id` DESC
  	</select>

@@ -19,9 +19,7 @@ public interface PostDAO {
 			);
 	
 	// 게시글 보기
-	public List<Post> selectPostList(
-			@Param("userId") int userId
-			);
+	public List<Post> selectPostList();
 	
 	// 게시글 삭제
 	public int deletePost(
