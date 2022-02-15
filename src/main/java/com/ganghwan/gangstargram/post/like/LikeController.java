@@ -19,6 +19,7 @@ public class LikeController {
 	@Autowired
 	private LikeBO likeBO;
 
+	// 좋아요 기능
 	@GetMapping("/post/like")
 	public Map<String, String> like(
 			@RequestParam("postId") int postId,

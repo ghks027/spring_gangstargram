@@ -21,6 +21,7 @@ public class CommentRestController {
 	@Autowired
 	private CommentBO commentBO;
 	
+	// 댓글 작성
 	@PostMapping("/create")
 	public Map<String, String> create(
 			@RequestParam("postId") int postId,

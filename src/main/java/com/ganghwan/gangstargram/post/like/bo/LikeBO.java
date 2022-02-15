@@ -11,6 +11,7 @@ public class LikeBO {
 	@Autowired
 	private LikeDAO likeDAO;
 	
+	// 좋아요 기능
 	public int addLike(int postId, int userId) {
 		return likeDAO.insertLike(postId, userId);
 	}

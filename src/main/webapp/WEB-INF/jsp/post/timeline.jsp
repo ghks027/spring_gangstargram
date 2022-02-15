@@ -42,33 +42,38 @@
 				</div>
 				
 				<!-- 게시글 보기 -->
-				<c:forEach var = "post" items = "${postList }">
+				<c:forEach var = "postDetail" items = "${postList }">
 				
 					<div class = "post-box mt-3 border rounded">
 						<div class = "postDetail d-flex justify-content-between align-items-center">
-							<b class = "ml-3">${post.userLoginId }</b>
-							<button type = "button" class = "btn btn-danger btn-sm" id = "deleteBtn" data-post-id = "${post.id }">삭제</button>
+							<b class = "ml-3">${postDetail.post.userLoginId }</b>
+							<button type = "button" class = "btn btn-danger btn-sm" id = "deleteBtn" data-post-id = "${postDetail.post.id }">삭제</button>
 						</div>
 							
-						<div class = "d-flex justify-content-center"><img class = "mt-1" width = "200" src = "${post.image} "></div>
+						<div class = "d-flex justify-content-center"><img class = "mt-1" width = "200" src = "${postDetail.post.image} "></div>
 						
 						<hr>
 						
+						<!-- 좋아요 기능 -->
 						<div class = "ml-2" >
-							<a href = "#" class = "likeBtn text-dark" data-post-id = "${post.id }">
+							<a href = "#" class = "likeBtn text-dark" data-post-id = "${postDetail.post.id }">
 								<i class="bi bi-heart"></i>
-								<b style = "font-size:small">좋아요</b>
+								<b style = "font-size:small">좋아요 3개</b>
 							</a>
-						
 						</div>	
 						
-						<div style = "border:none" class = "form-control">${post.content }</div>
-							
+						<div style = "border:none" class = "form-control">${postDetail.post.content }</div>
+						
+						<!-- 댓글 기능 -->
 						<div class = "postDetail d-flex align-items-center"><b class = "ml-3">댓글</b></div>
-						<div style = "border:none" class = "form-control mt-1">댓글 내용</div>
-						<div class = "d-flex">
-							<input type = "text" class = "form-control broder-0 bin mr-2" id = "commentInput${post.id }" placeholder = "댓글을 입력하세요">
-							<button type = "button" class = "btn btn-primary btn-sm commentBtn" data-post-id = "${post.id }">등록</button>
+						<div style = "border:none" class = "form-control mt-1">
+						<c:forEach var = "comment" items = "${postDetail.commentList }">
+							<div style = "font-size:small"><b class = "text-dark">${comment.userLoginId }</b> - ${comment.content }</div>
+						</c:forEach>
+						</div>
+						<div class = "d-flex form-control">
+							<input  style = "border:none;" type = "text" class = "form-control broder-0 bin mr-2" id = "commentInput${postDetail.post.id }" placeholder = "댓글을 입력하세요">
+							<button type = "button" class = "btn btn-primary btn-sm commentBtn" data-post-id = "${postDetail.post.id }">등록</button>
 						</div>
 					</div>
 					
