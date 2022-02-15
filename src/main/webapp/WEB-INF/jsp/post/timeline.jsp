@@ -55,13 +55,16 @@
 						<hr>
 						
 						<div class = "ml-2" >
-							<i class="bi bi-heart"></i>
-							<b style = "font-size:small">좋아요</b>
+							<a href = "#" class = "likeBtn text-dark" data-post-id = "${post.id }">
+								<i class="bi bi-heart"></i>
+								<b style = "font-size:small">좋아요</b>
+							</a>
+						
 						</div>	
 						
 						<div style = "border:none" class = "form-control">${post.content }</div>
 							
-						<div class = "postDetail d-flex align-items-center"><div class = "ml-3">댓글</div></div>
+						<div class = "postDetail d-flex align-items-center"><b class = "ml-3">댓글</b></div>
 						<div style = "border:none" class = "form-control mt-1">댓글 내용</div>
 						<div class = "d-flex">
 							<input type = "text" class = "form-control broder-0 bin mr-2" id = "commentInput${post.id }" placeholder = "댓글을 입력하세요">
@@ -155,7 +158,7 @@
 			let postId = $(this).data("post-id");
 			
 			// "#commentInput5"
-			let content =  $("commentInput" + postId).val();
+			let content =  $("#commentInput" + postId).val();
 			
 			$.ajax({
 				type:"post",
@@ -172,6 +175,27 @@
 					alert("에러 발생");
 				}
 				
+			});
+		});
+		
+		// 좋아요 작성
+		$(".likeBtn").on("click", function() {
+			let postId = $(this).data("post-id");
+			
+			$.ajax({
+				type:"get",
+				url:"/post/like",
+				data:{"postId":postId},
+				success:function(data) {
+					if(data.result == "success"){
+						location.reload();
+					} else {
+						alert("좋아요 실패");
+					}
+				},
+				error:function(){
+					alert("에러 발생");
+				}
 			});
 		});
 	});
