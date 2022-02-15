@@ -18,6 +18,7 @@ public interface CommentDAO {
 			@Param("content") String content
 			);
 	
+	// 댓글 불러오기
 	public List<Comment> selectCommentList(
 			@Param("postId") int postId
 			);

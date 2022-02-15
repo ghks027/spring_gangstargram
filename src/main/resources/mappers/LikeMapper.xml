@@ -20,4 +20,27 @@
  		, now()
  	)
  	</insert>
+ 	
+ 	<!-- 좋아요 불러오기 -->
+ 	<select id = "selectLikeCount" parameterType = "int"
+ 	resultType = "int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 	</select>
+ 	
+ 	<!-- 좋아요 여부 확인 -->
+ 	<select id = "selectLikeCountByUserId" parameterType = "map" resultType = "int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND
+ 			`userId` = #{userId}
+ 	</select>
  </mapper>

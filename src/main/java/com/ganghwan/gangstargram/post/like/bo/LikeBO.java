@@ -15,4 +15,25 @@ public class LikeBO {
 	public int addLike(int postId, int userId) {
 		return likeDAO.insertLike(postId, userId);
 	}
+	
+	// 좋아요 불러오기
+	public int getLikeCount(int postId) {
+		return likeDAO.selectLikeCount(postId);
+	}
+	
+	// postId 와 userId 로 좋아요 여부 확인
+	// ~인지 아닌지 - is
+	public boolean isLike(int postId, int userId) {
+		int count = likeDAO.selectLikeCountByUserId(postId, userId);
+		
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+		
+//		return !(count == 0);
+		
+//		return !(likeDAO.selectLikeCountByUserId(postId, userId) == 0);
+	}
 }

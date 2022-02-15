@@ -27,7 +27,9 @@
  		)
  	</insert>
  	
- 	<select id = "selectCommentList" parameterType = "int" resultType = "com.ganghwan.gangstargram.post.comment.model.Comment">
+ 	<!-- 댓글 불러오기 -->
+ 	<select id = "selectCommentList" parameterType = "int"
+ 	resultType = "com.ganghwan.gangstargram.post.comment.model.Comment">
  		SELECT
  			`id`
  			, `postId`

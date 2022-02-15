@@ -2,6 +2,9 @@ package com.ganghwan.gangstargram.post;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,10 +26,15 @@ public class PostController {
 	// 게시글
 	@GetMapping("/timeline")
 	public String timeline(
-			Model model
+			Model model,
+			HttpServletRequest request
 			) {
 		
-		List<PostDetail> postlist = postBO.getPostList();
+		// userId 불러오기
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<PostDetail> postlist = postBO.getPostList(userId);
 		model.addAttribute("postList", postlist);
 		
 		return "post/timeline";

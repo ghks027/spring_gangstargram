@@ -57,8 +57,16 @@
 						<!-- 좋아요 기능 -->
 						<div class = "ml-2" >
 							<a href = "#" class = "likeBtn text-dark" data-post-id = "${postDetail.post.id }">
-								<i class="bi bi-heart"></i>
-								<b style = "font-size:small">좋아요 3개</b>
+								<c:choose>
+									<c:when test = "${postDetail.like }">
+										<i class="bi bi-heart-fill text-danger"></i>
+									</c:when>
+									
+									<c:otherwise>
+										<i class="bi bi-heart"></i>
+									</c:otherwise>
+								</c:choose>
+										<b style = "font-size:small">좋아요 ${postDetail.likeCount }개</b>
 							</a>
 						</div>	
 						
