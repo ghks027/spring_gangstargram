@@ -45,7 +45,8 @@
  	
  	<!-- 게시글 삭제 -->
  	<delete id = "deletePost" parameterType = "int">
- 		DELETE FROM `post`
+ 		DELETE FROM 
+ 			`post`
  		WHERE
  			`id` = #{postId}
  	</delete>

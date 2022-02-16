@@ -123,13 +123,11 @@
 	    <div class="modal-content">
 	    
 	      <div class="modal-body text-center">
-	        삭제하기
-	      </div>
-	      
-	      <div class="modal-footer d-flex justify-content-center">
-	      	<button class = "btn form-control" style="font-size:medium" type="button" data-dismiss="modal">
-	      		취소
-        	</button>
+	      	<button class = "btn form-control" type="button" id = "deleteBtn" data-post-id = "${postDetail.post.id }">삭제하기</button>
+        	
+        	<hr>
+        	
+	      	<button class = "btn form-control" type="button" data-dismiss="modal">취소</button>
 	      </div>
 	      
 	    </div>
