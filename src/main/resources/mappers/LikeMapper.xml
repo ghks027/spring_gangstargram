@@ -21,6 +21,16 @@
  	)
  	</insert>
  	
+ 	<!-- 좋아요 취소 기능 -->
+ 	<delete id = "deleteLike">
+ 		DELETE FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND
+ 			`userId` = #{userId}
+ 	</delete>
+ 	
  	<!-- 좋아요 불러오기 -->
  	<select id = "selectLikeCount" parameterType = "int"
  	resultType = "int">

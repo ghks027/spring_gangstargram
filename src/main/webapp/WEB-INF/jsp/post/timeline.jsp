@@ -33,6 +33,7 @@
 					<textarea style = "border:none; resize:none" class = "form-control text-secondary" rows="2" id = "contentInput" placeholder = "내용을 입력하세요"></textarea>
 						
 					<div class = "d-flex justify-content-between my-1">
+					
 						<!-- icon - 글자처럼 취급 -->
 						<span class = "img-icon"><i class="bi bi-image" id = "imageBtn"></i></span>
 						<input type = "file" id = "fileInput" class = "d-none">
@@ -47,7 +48,13 @@
 					<div class = "post-box mt-3 border rounded">
 						<div class = "postDetail d-flex justify-content-between align-items-center">
 							<b class = "ml-3">${postDetail.post.userLoginId }</b>
-							<button type = "button" class = "btn btn-danger btn-sm" id = "deleteBtn" data-post-id = "${postDetail.post.id }">삭제</button>
+							
+							<!-- 삭제 기능 -->
+							<div class="more-icon mr-1">
+								<a class="text-dark moreBtn" href="#" data-toggle="modal" data-target="#exampleModalCenter"> 
+									<i class="bi bi-three-dots-vertical"></i> 
+								</a>
+							</div>
 						</div>
 							
 						<div class = "d-flex justify-content-center"><img class = "mt-1" width = "200" src = "${postDetail.post.image} "></div>
@@ -56,18 +63,35 @@
 						
 						<!-- 좋아요 기능 -->
 						<div class = "ml-2" >
+								
 							<a href = "#" class = "likeBtn text-dark" data-post-id = "${postDetail.post.id }">
 								<c:choose>
 									<c:when test = "${postDetail.like }">
-										<i class="bi bi-heart-fill text-danger"></i>
+											<i class="bi bi-heart-fill text-danger"></i>
 									</c:when>
-									
+								
 									<c:otherwise>
-										<i class="bi bi-heart"></i>
+											<i class="bi bi-heart"></i>
 									</c:otherwise>
 								</c:choose>
-										<b style = "font-size:small">좋아요 ${postDetail.likeCount }개</b>
+								
+								<b style = "font-size:small">좋아요 ${postDetail.likeCount }개</b>
 							</a>
+								
+					<%-- 			<c:choose>
+									<c:when test = "${postDetail.like }">
+										<a href = "#" class = "unlikeBtn" data-post-id = "${postDetail.post.id }">
+											<i class="bi bi-heart-fill text-danger"></i>
+										</a>
+									</c:when>
+								
+									<c:otherwise>
+										<a href = "#" class = "likeBtn text-dark" data-post-id = "${postDetail.post.id }">
+											<i class="bi bi-heart"></i>
+										</a>
+									</c:otherwise>
+								</c:choose> --%>
+
 						</div>	
 						
 						<div style = "border:none" class = "form-control">${postDetail.post.content }</div>
@@ -91,6 +115,25 @@
 		</section>
 		
 		<c:import url = "/WEB-INF/jsp/include/footer.jsp"/>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	    
+	      <div class="modal-body text-center">
+	        삭제하기
+	      </div>
+	      
+	      <div class="modal-footer d-flex justify-content-center">
+	      	<button class = "btn form-control" style="font-size:medium" type="button" data-dismiss="modal">
+	      		취소
+        	</button>
+	      </div>
+	      
+	    </div>
+	  </div>
 	</div>
 	
 	<script>
@@ -191,8 +234,11 @@
 			});
 		});
 		
-		// 좋아요 작성
-		$(".likeBtn").on("click", function() {
+		// 좋아요 기능
+		$(".likeBtn").on("click", function(e) {
+			
+			e.preventDefault(); // 고유의 기능을 지움
+			
 			let postId = $(this).data("post-id");
 			
 			$.ajax({
@@ -200,17 +246,37 @@
 				url:"/post/like",
 				data:{"postId":postId},
 				success:function(data) {
-					if(data.result == "success"){
 						location.reload();
-					} else {
-						alert("좋아요 실패");
-					}
 				},
 				error:function(){
 					alert("에러 발생");
 				}
 			});
 		});
+		
+/* 		// 좋아요 취소 기능
+		$(".unlikeBtn").on("click", function(e) {
+			
+			e.preventDefault(); // 고유의 기능을 지움
+			
+			let postId = $(this).data("post-id");
+			
+			$.ajax({
+				type:"get",
+				url:"/post/unlike",
+				data:{"postId":postId},
+				success:function(data) {
+					if(data.result == "success"){
+						location.reload();
+					} else {
+						alert("좋아요 취소 실패");
+					}
+				},
+				error:function() {
+					alert("에러 발생");
+				}
+			});
+		}); */
 	});
 	</script>
 </body>
