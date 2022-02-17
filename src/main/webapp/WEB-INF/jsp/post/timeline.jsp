@@ -51,7 +51,7 @@
 							
 							<!-- 삭제 기능 -->
 							<div class="more-icon mr-1">
-								<a class="text-dark moreBtn" href="#" data-toggle="modal" data-target="#exampleModalCenter"> 
+								<a class="text-dark moreBtn" data-post-id = "${postDetail.post.id }" href="#" data-toggle="modal" data-target="#exampleModalCenter"> 
 									<i class="bi bi-three-dots-vertical"></i> 
 								</a>
 							</div>
@@ -123,7 +123,11 @@
 	    <div class="modal-content">
 	    
 	      <div class="modal-body text-center">
-	      	<button class = "btn form-control" type="button" id = "deleteBtn" data-post-id = "${postDetail.post.id }">삭제하기</button>
+	      	<button class = "btn form-control" type="button">삭제하기</button>
+        	
+        	<hr>
+        	
+        	<a href = "#" id = "deleteBtn">삭제하기</a>
         	
         	<hr>
         	
@@ -183,29 +187,6 @@
 			});
 		});
 		
-		// 게시글 삭제
-		$("#deleteBtn").on("click", function() {
-				
-			let postId = $(this).data("post-id");
-				
-			$.ajax({
-				type:"get",
-				url:"/post/delete",
-				data:{"postId":postId},
-				success:function(data) {
-					if(data.result == "success") {
-						alert("삭제 성공");
-						location.href = "/post/timeline";
-					} else {
-						alert("삭제 실패"); 
-					}
-				},
-				error:function() {
-					alert("에러 발생");
-				}
-			});
-		});
-		
 		// 댓글 작성
 		$(".commentBtn").on("click", function() {
 			
@@ -245,6 +226,40 @@
 				data:{"postId":postId},
 				success:function(data) {
 						location.reload();
+				},
+				error:function(){
+					alert("에러 발생");
+				}
+			});
+		});
+		
+		// 게시글 삭제
+		$(".moreBtn").on("click", function(e) {
+			
+			e.preventDefault();
+			
+			let postId = $(this).data("post-id");
+			
+			// postId 를 modal 의 삭제하기 button 에 값을 부여한다
+			$("#deleteBtn").data("post-id", postId);
+		});
+		
+		$("#deleteBtn").on("click", function(e) {
+			
+			e.preventDefault();
+			
+			let postId = $(this).data("post-id");
+			
+			$.ajax({
+				type:"get",
+				url:"/post/delete",
+				data:{"postId":postId},
+				success:function(data) {
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						alert("삭제 실패");
+					}
 				},
 				error:function(){
 					alert("에러 발생");

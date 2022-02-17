@@ -61,7 +61,7 @@ public class PostRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-		if(count == 1) {
+		if(count == 1) { // postId 를 기반으로 삭제하기 때문에 1 이어야 한다.
 			result.put("result", "success");
 		} else {
 			result.put("result", "fail");

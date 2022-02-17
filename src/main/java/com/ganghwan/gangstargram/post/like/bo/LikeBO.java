@@ -52,4 +52,9 @@ public class LikeBO {
 		
 //		return !(likeDAO.selectLikeCountByUserId(postId, userId) == 0);
 	}
+	
+	// 좋아요 삭제
+	public int deleteLikeByPostId(int postId) {
+		return likeDAO.deleteLikeByPostId(postId);
+	}
 }

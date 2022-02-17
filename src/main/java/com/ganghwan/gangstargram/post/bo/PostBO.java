@@ -46,7 +46,7 @@ public class PostBO {
 		List<PostDetail> postDetailList = new ArrayList<>();
 		
 		for(Post post:postList) {
-			// 해당하는 postid 로 댓글 가져오기
+			// 해당하는 postId 로 댓글 가져오기
 			List<Comment> commentList = commentBO.getCommentList(post.getId());
 			
 			// 좋아요 개수
@@ -77,6 +77,11 @@ public class PostBO {
 		Post post = postDAO.selectPost(postId);
 		FileManagerService.removeFile(post.getImage());
 		
+		// 댓글, 좋아요 삭제
+		commentBO.deleteComment(postId);
+		likeBO.deleteLikeByPostId(postId);
+		
+		// 게시글 삭제
 		return postDAO.deletePost(postId);
 	}
 }

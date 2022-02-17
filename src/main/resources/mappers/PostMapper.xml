@@ -52,7 +52,8 @@
  	</delete>
  	
  	<!-- 파일 삭제 -->
- 	<select id = "selectPost" resultType = "com.ganghwan.gangstargram.post.model.Post">
+ 	<select id = "selectPost" parameterType = "int"
+ 	resultType = "com.ganghwan.gangstargram.post.model.Post">
  		SELECT
  			`id`
  			, `userId`

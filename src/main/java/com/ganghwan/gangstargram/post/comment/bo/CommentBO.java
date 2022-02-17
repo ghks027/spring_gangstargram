@@ -23,4 +23,9 @@ public class CommentBO {
 	public List<Comment> getCommentList(int postId) {
 		return commentDAO.selectCommentList(postId);
 	}
+	
+	// 댓글 삭제
+	public int deleteComment(int postId) {
+		return commentDAO.deleteComment(postId);
+	}
 }
