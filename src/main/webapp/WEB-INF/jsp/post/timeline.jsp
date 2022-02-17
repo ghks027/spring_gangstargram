@@ -123,11 +123,7 @@
 	    <div class="modal-content">
 	    
 	      <div class="modal-body text-center">
-	      	<button class = "btn form-control" type="button">삭제하기</button>
-        	
-        	<hr>
-        	
-        	<a href = "#" id = "deleteBtn">삭제하기</a>
+	      	<button class = "btn form-control" type="button" id = "deleteBtn">삭제하기</button>
         	
         	<hr>
         	

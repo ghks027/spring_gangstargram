@@ -71,10 +71,16 @@ public class PostBO {
 	}
 	
 	// 게시글 삭제
-	public int deletePost(int postId) {
+	public int deletePost(int postId, int userId) {
+		
+		Post post = postDAO.selectPost(postId);
+		
+		// 본인 게시글만 삭제
+		if(post.getUserId() != userId) {
+			return 0;
+		}
 		
 		// 파일 삭제
-		Post post = postDAO.selectPost(postId);
 		FileManagerService.removeFile(post.getImage());
 		
 		// 댓글, 좋아요 삭제

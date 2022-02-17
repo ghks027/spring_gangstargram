@@ -54,10 +54,15 @@ public class PostRestController {
 	// 게시글 삭제
 	@GetMapping("/delete")
 	public Map<String, String> delete(
-			@RequestParam("postId") int postId
+			@RequestParam("postId") int postId,
+			HttpServletRequest request
 			) {
 		
-		int count = postBO.deletePost(postId);
+		// 본인 게시글만 삭제 가능
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		int count = postBO.deletePost(postId, userId);
 		
 		Map<String, String> result = new HashMap<>();
 		
