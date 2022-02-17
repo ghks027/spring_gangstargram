@@ -55,6 +55,7 @@
 									<i class="bi bi-three-dots-vertical"></i> 
 								</a>
 							</div>
+							
 						</div>
 							
 						<div class = "d-flex justify-content-center"><img class = "mt-1" width = "200" src = "${postDetail.post.image} "></div>
@@ -99,9 +100,19 @@
 						<!-- 댓글 기능 -->
 						<div class = "postDetail d-flex align-items-center"><b class = "ml-3">댓글</b></div>
 						<div style = "border:none" class = "form-control mt-1">
+						
+						<!-- 댓글 보이기 -->
 						<c:forEach var = "comment" items = "${postDetail.commentList }">
-							<div style = "font-size:small"><b class = "text-dark">${comment.userLoginId }</b> - ${comment.content }</div>
+							<div class = "d-flex justify-content-between">
+								<div style = "font-size:small"><b class = "text-dark">${comment.userLoginId }</b> - ${comment.content }</div>
+								
+						<%-- 		<!-- 댓글 삭제 -->
+								<a href="#" class = "text-dark" data-post-id = "${postDetail.post.id }" id = "commentDeleteBtn"> 
+									<i class="bi bi-three-dots"></i>
+								</a> --%>
+							</div>
 						</c:forEach>
+						
 						</div>
 						<div class = "d-flex form-control">
 							<input  style = "border:none;" type = "text" class = "form-control broder-0 bin mr-2" id = "commentInput${postDetail.post.id }" placeholder = "댓글을 입력하세요">
@@ -117,7 +128,7 @@
 		<c:import url = "/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 	
-	<!-- Modal -->
+	<!-- 게시글 삭제 Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
@@ -209,6 +220,11 @@
 			});
 		});
 		
+/* 		// 댓글 삭제 기능
+		$(".commentDeleteBtn").on("click", function(e) {
+			e.preventDefault();
+		}); */
+		
 		// 좋아요 기능
 		$(".likeBtn").on("click", function(e) {
 			
@@ -254,7 +270,7 @@
 					if(data.result == "success") {
 						location.reload();
 					} else {
-						alert("삭제 실패");
+						alert("삭제 불가");
 					}
 				},
 				error:function(){
