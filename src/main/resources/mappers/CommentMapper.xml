@@ -44,11 +44,35 @@
  			`postId` = #{postId}
  	</select>
  	
- 	<!-- 댓글 삭제 -->
- 	<delete id = "deleteComment" parameterType = "int">
+ 	<!-- 게시글 삭제시 댓글 삭제 -->
+ 	<delete id = "deleteCommentByPostId" parameterType = "int">
  		DELETE FROM
  			`comment`
  		WHERE
  			`postId` = #{postId}
  	</delete>
+ 	
+ 	<!-- 댓글 삭제 -->
+ 	<delete id = "deleteComment" parameterType = "int">
+ 		DELETE FROM
+ 			`comment`
+ 		WHERE
+ 			`id` = #{commentId}
+ 	</delete>
+ 	
+<!--  	<select id = "selectComment" parameterType = "int"
+ 	resultType = "com.ganghwan.gangstargram.post.comment.model.Comment">
+ 		 SELECT
+ 			`id`
+ 			, `postId`
+ 			, `userId`
+ 			, `userLoginId`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`id` = #{commentId}
+ 	</select> -->
  </mapper>

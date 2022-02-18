@@ -52,13 +52,13 @@
 							<!-- 삭제 기능 -->
 							<div class="more-icon mr-1">
 								<a class="text-dark moreBtn" data-post-id = "${postDetail.post.id }" href="#" data-toggle="modal" data-target="#exampleModalCenter"> 
-									<i class="bi bi-three-dots-vertical"></i> 
+									<i class="bi bi-three-dots-vertical"></i>
 								</a>
 							</div>
 							
 						</div>
 							
-						<div class = "d-flex justify-content-center"><img class = "mt-1" width = "200" src = "${postDetail.post.image} "></div>
+						<div class = "d-flex justify-content-center"><img class = "mt-1 w-100 imageClick" src = "${postDetail.post.image} "></div>
 						
 						<hr>
 						
@@ -106,10 +106,14 @@
 							<div class = "d-flex justify-content-between">
 								<div style = "font-size:small"><b class = "text-dark">${comment.userLoginId }</b> - ${comment.content }</div>
 								
-						<%-- 		<!-- 댓글 삭제 -->
-								<a href="#" class = "text-dark" data-post-id = "${postDetail.post.id }" id = "commentDeleteBtn"> 
+						<!-- 댓글 삭제 -->
+								<a href="#" class = "text-dark commentDeleteBtn" data-comment-id = "${comment.id }"> 
 									<i class="bi bi-three-dots"></i>
-								</a> --%>
+								<!-- 	<select name = "comment" class = " d-none">
+										<option value="취소" selected="selected">취소</option>
+										<option value="댓글 삭제">삭제</option>
+									</select> -->
+								</a>
 							</div>
 						</c:forEach>
 						
@@ -220,10 +224,30 @@
 			});
 		});
 		
-/* 		// 댓글 삭제 기능
+  		// 댓글 삭제 기능
 		$(".commentDeleteBtn").on("click", function(e) {
+			
 			e.preventDefault();
-		}); */
+			
+			let commentId = $(this).data("comment-id");
+			
+  			$.ajax({
+				type:"get",
+				url:"/post/comment/delete",
+				data:{"commentId":commentId},
+				success:function(data) {
+					if(data.result == "success") {
+						alert("삭제되었습니다")
+						location.reload();
+					} else {
+						alert("삭제 실패");
+					}
+				},
+				error:function() {
+					alert("에러 발생");
+				}
+			});  
+		});
 		
 		// 좋아요 기능
 		$(".likeBtn").on("click", function(e) {

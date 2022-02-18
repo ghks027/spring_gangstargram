@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.ganghwan.gangstargram.post.comment.model.Comment;
+import com.ganghwan.gangstargram.post.model.Post;
 
 @Repository
 public interface CommentDAO {
@@ -23,8 +24,19 @@ public interface CommentDAO {
 			@Param("postId") int postId
 			);
 	
-	// 댓글 삭제
-	public int deleteComment(
+	// 게시글 삭제시 댓글 삭제
+	public int deleteCommentByPostId(
 			@Param("postId") int postId
 			);
+	
+	// 댓글 삭제
+	public int deleteComment(
+			@Param("commentId") int commentId
+			);
+	
+			/*
+			 * public Post selectComment(
+			 * 
+			 * @Param("commentId") int commentId );
+			 */
 }

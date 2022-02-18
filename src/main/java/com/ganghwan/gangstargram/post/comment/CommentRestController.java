@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,30 @@ public class CommentRestController {
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		int count = commentBO.addComment(postId, userId, userLoginId, content);
+		Map<String, String> result = new HashMap<>();
+		
+		if(count == 1) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "fail");
+		}
+		
+		return result;
+	}
+	
+	// 댓글 삭제
+	@GetMapping("/delete")
+	public Map<String, String> delete(
+			@RequestParam("commentId") int commentId,
+			HttpServletRequest request
+			) {
+		
+		// 본인 댓글만 삭제
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		int count = commentBO.deleteComment(commentId, userId);
+		
 		Map<String, String> result = new HashMap<>();
 		
 		if(count == 1) {

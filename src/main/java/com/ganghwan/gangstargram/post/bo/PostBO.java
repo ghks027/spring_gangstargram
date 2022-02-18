@@ -84,7 +84,7 @@ public class PostBO {
 		FileManagerService.removeFile(post.getImage());
 		
 		// 댓글, 좋아요 삭제
-		commentBO.deleteComment(postId);
+		commentBO.deleteCommentByPostId(postId);
 		likeBO.deleteLikeByPostId(postId);
 		
 		// 게시글 삭제
